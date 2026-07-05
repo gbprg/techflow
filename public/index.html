@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Quadro Kanban para gerenciamento ágil de tarefas" />
+    <title>TechFlow Tasks</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">TechFlow Solutions</p>
+        <h1>Fluxo de tarefas</h1>
+        <p class="subtitle">Acompanhe as atividades da operação logística.</p>
+      </div>
+      <button id="new-task" class="primary-button" type="button">+ Nova tarefa</button>
+    </header>
+
+    <main>
+      <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+      <section class="board" aria-label="Quadro Kanban">
+        <article class="column" data-status="todo">
+          <header><h2>A Fazer</h2><span class="count">0</span></header>
+          <div class="task-list" id="todo-list"></div>
+        </article>
+        <article class="column" data-status="in_progress">
+          <header><h2>Em Progresso</h2><span class="count">0</span></header>
+          <div class="task-list" id="in_progress-list"></div>
+        </article>
+        <article class="column" data-status="done">
+          <header><h2>Concluído</h2><span class="count">0</span></header>
+          <div class="task-list" id="done-list"></div>
+        </article>
+      </section>
+    </main>
+
+    <dialog id="task-dialog">
+      <form id="task-form">
+        <div class="dialog-heading">
+          <h2 id="dialog-title">Nova tarefa</h2>
+          <button class="icon-button" id="close-dialog" type="button" aria-label="Fechar">×</button>
+        </div>
+        <input id="task-id" type="hidden" />
+        <label for="title">Título</label>
+        <input id="title" name="title" minlength="3" maxlength="100" required />
+        <label for="description">Descrição</label>
+        <textarea id="description" name="description" maxlength="500" rows="4"></textarea>
+        <label for="status">Status</label>
+        <select id="status" name="status">
+          <option value="todo">A Fazer</option>
+          <option value="in_progress">Em Progresso</option>
+          <option value="done">Concluído</option>
+        </select>
+        <div class="dialog-actions">
+          <button id="cancel-dialog" class="secondary-button" type="button">Cancelar</button>
+          <button class="primary-button" type="submit">Salvar tarefa</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>

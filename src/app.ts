@@ -13,6 +13,7 @@ export function createApp(database: SqliteDatabase) {
   const tasks = new TaskRepository(database);
 
   app.use(express.json());
+  app.use(express.static('public'));
 
   app.get('/api/tasks', (_request, response) => {
     response.json(tasks.findAll());
