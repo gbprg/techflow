@@ -1,0 +1,27 @@
+flowchart LR
+  member["Membro da equipe"]:::actor
+  manager["Gestor do projeto"]:::actor
+
+  subgraph system[TechFlow Tasks]
+    create([Criar tarefa])
+    list([Visualizar quadro Kanban])
+    edit([Editar tarefa])
+    move([Alterar status])
+    delete([Excluir tarefa])
+    prioritize([Definir prioridade])
+    monitor([Monitorar fluxo da equipe])
+  end
+
+  member --> create
+  member --> list
+  member --> edit
+  member --> move
+  member --> delete
+  manager --> list
+  manager --> prioritize
+  manager --> monitor
+  prioritize -. estende .-> edit
+  monitor -. inclui .-> list
+
+  classDef actor fill:#173b57,color:#fff,stroke:#173b57
+  style system fill:#f4f7fb,stroke:#146c73,stroke-width:2px

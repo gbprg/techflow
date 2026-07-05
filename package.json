@@ -11,7 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
-    "docs:diagrams": "mmdc -i docs/diagrams/use-cases.mmd -o docs/diagrams/use-cases.svg -b transparent && mmdc -i docs/diagrams/classes.mmd -o docs/diagrams/classes.svg -b transparent",
+    "docs:diagrams": "mmdc -p docs/puppeteer-config.json -i docs/diagrams/use-cases.mmd -o docs/diagrams/use-cases.svg -b transparent && mmdc -p docs/puppeteer-config.json -i docs/diagrams/classes.mmd -o docs/diagrams/classes.svg -b transparent",
     "docs:pdf": "npm run docs:diagrams && md-to-pdf docs/relatorio.md --config-file docs/pdf-config.cjs"
   },
   "dependencies": {

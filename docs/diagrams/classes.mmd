@@ -1,0 +1,44 @@
+classDiagram
+  direction LR
+
+  class Task {
+    +number id
+    +string title
+    +string description
+    +TaskStatus status
+    +TaskPriority priority
+    +string createdAt
+    +string updatedAt
+  }
+
+  class TaskRepository {
+    -SqliteDatabase database
+    +create(input) Task
+    +findAll() Task[]
+    +findById(id) Task
+    +update(id, input) Task
+    +delete(id) boolean
+  }
+
+  class TaskValidation {
+    +validateCreateTask(body) CreateTaskInput
+    +validateUpdateTask(body) UpdateTaskInput
+    +parseTaskId(value) number
+  }
+
+  class ExpressApp {
+    +GET /api/tasks
+    +GET /api/tasks/:id
+    +POST /api/tasks
+    +PUT /api/tasks/:id
+    +DELETE /api/tasks/:id
+  }
+
+  class SqliteDatabase {
+    +tasks table
+  }
+
+  ExpressApp ..> TaskValidation : valida
+  ExpressApp --> TaskRepository : utiliza
+  TaskRepository --> Task : cria e retorna
+  TaskRepository --> SqliteDatabase : persiste
