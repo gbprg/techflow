@@ -1,0 +1,36 @@
+{
+  "name": "techflow-tasks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema web de gerenciamento ágil de tarefas",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "docs:diagrams": "mmdc -i docs/diagrams/use-cases.mmd -o docs/diagrams/use-cases.svg -b transparent && mmdc -i docs/diagrams/classes.mmd -o docs/diagrams/classes.svg -b transparent",
+    "docs:pdf": "npm run docs:diagrams && md-to-pdf docs/relatorio.md --config-file docs/pdf-config.cjs"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.11.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@mermaid-js/mermaid-cli": "^11.16.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.0",
+    "@types/supertest": "^7.2.0",
+    "eslint": "^10.6.0",
+    "md-to-pdf": "^5.2.5",
+    "supertest": "^7.2.2",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.1",
+    "vitest": "^4.1.9"
+  }
+}
