@@ -12,9 +12,27 @@ export function createApp(database: SqliteDatabase) {
     response.json(tasks.findAll());
   });
 
+  app.get('/api/tasks/:id', (request, response) => {
+    const task = tasks.findById(Number(request.params.id));
+    if (!task) {
+      response.status(404).json({ message: 'Tarefa não encontrada.' });
+      return;
+    }
+    response.json(task);
+  });
+
   app.post('/api/tasks', (request, response) => {
     const task = tasks.create(request.body);
     response.status(201).json(task);
+  });
+
+  app.put('/api/tasks/:id', (request, response) => {
+    const task = tasks.update(Number(request.params.id), request.body);
+    if (!task) {
+      response.status(404).json({ message: 'Tarefa não encontrada.' });
+      return;
+    }
+    response.json(task);
   });
 
   return app;
