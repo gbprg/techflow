@@ -31,6 +31,7 @@ describe('API de tarefas', () => {
       title: 'Separar encomendas',
       description: 'Organizar os pedidos por rota',
       status: 'todo',
+      priority: 'medium',
     });
     expect(response.body.createdAt).toBeTypeOf('string');
   });
@@ -85,6 +86,32 @@ describe('API de tarefas', () => {
 
     expect(response.status).toBe(400);
     expect(response.body.message).toContain('status');
+  });
+
+  it('persiste e recupera a prioridade de uma tarefa', async () => {
+    const created = await request(app).post('/api/tasks').send({
+      title: 'Resolver atraso crítico',
+      priority: 'high',
+    });
+
+    expect(created.status).toBe(201);
+    expect(created.body.priority).toBe('high');
+
+    const updated = await request(app)
+      .put(`/api/tasks/${created.body.id}`)
+      .send({ priority: 'low' });
+    expect(updated.status).toBe(200);
+    expect(updated.body.priority).toBe('low');
+  });
+
+  it('rejeita uma prioridade inválida', async () => {
+    const response = await request(app).post('/api/tasks').send({
+      title: 'Tarefa inválida',
+      priority: 'urgente',
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toContain('prioridade');
   });
 
   it('exclui uma tarefa', async () => {

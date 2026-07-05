@@ -20,10 +20,20 @@ export function createDatabase(filename = 'data/techflow.db'): SqliteDatabase {
       description TEXT NOT NULL DEFAULT '',
       status TEXT NOT NULL DEFAULT 'todo'
         CHECK (status IN ('todo', 'in_progress', 'done')),
+      priority TEXT NOT NULL DEFAULT 'medium'
+        CHECK (priority IN ('low', 'medium', 'high')),
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
     )
   `);
+
+  const columns = database.pragma('table_info(tasks)') as Array<{ name: string }>;
+  if (!columns.some((column) => column.name === 'priority')) {
+    database.exec(`
+      ALTER TABLE tasks ADD COLUMN priority TEXT NOT NULL DEFAULT 'medium'
+        CHECK (priority IN ('low', 'medium', 'high'))
+    `);
+  }
 
   return database;
 }

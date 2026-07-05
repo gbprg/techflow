@@ -37,6 +37,11 @@ main { padding: 1.5rem clamp(1rem, 5vw, 4rem) 3rem; }
 
 .task-card { padding: 1rem; border: 1px solid #d9e2ea; border-radius: 10px; background: white; box-shadow: 0 2px 6px rgb(23 59 87 / 7%); }
 .task-card h3 { margin: 0 0 .5rem; font-size: 1rem; }
+.priority { display: inline-block; margin-bottom: .6rem; padding: .18rem .45rem; border-radius: 999px; font-size: .7rem; font-weight: 750; text-transform: uppercase; }
+.priority-low { color: #245d4b; background: #dff6ed; }
+.priority-medium { color: #81520f; background: #fff1cf; }
+.priority-high { color: #9e2632; background: #ffe1e4; }
+.task-card:has(.priority-high) { border-left: 4px solid #c83241; }
 .task-card p { margin: 0 0 .85rem; color: #667085; font-size: .9rem; white-space: pre-wrap; }
 .task-card select { width: 100%; margin-bottom: .75rem; }
 .card-actions { display: flex; gap: .5rem; }

@@ -6,6 +6,7 @@ interface TaskRow {
   title: string;
   description: string;
   status: Task['status'];
+  priority: Task['priority'];
   created_at: string;
   updated_at: string;
 }
@@ -16,6 +17,7 @@ function mapTask(row: TaskRow): Task {
     title: row.title,
     description: row.description,
     status: row.status,
+    priority: row.priority,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -28,10 +30,17 @@ export class TaskRepository {
     const now = new Date().toISOString();
     const result = this.database
       .prepare(`
-        INSERT INTO tasks (title, description, status, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO tasks (title, description, status, priority, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?)
       `)
-      .run(input.title, input.description ?? '', input.status ?? 'todo', now, now);
+      .run(
+        input.title,
+        input.description ?? '',
+        input.status ?? 'todo',
+        input.priority ?? 'medium',
+        now,
+        now,
+      );
 
     return this.findById(Number(result.lastInsertRowid))!;
   }
@@ -57,13 +66,14 @@ export class TaskRepository {
     this.database
       .prepare(`
         UPDATE tasks
-        SET title = ?, description = ?, status = ?, updated_at = ?
+        SET title = ?, description = ?, status = ?, priority = ?, updated_at = ?
         WHERE id = ?
       `)
       .run(
         input.title ?? current.title,
         input.description ?? current.description,
         input.status ?? current.status,
+        input.priority ?? current.priority,
         new Date().toISOString(),
         id,
       );

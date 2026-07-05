@@ -1,5 +1,6 @@
 const statuses = ['todo', 'in_progress', 'done'];
 const statusLabels = { todo: 'A Fazer', in_progress: 'Em Progresso', done: 'Concluído' };
+const priorityLabels = { low: 'Baixa', medium: 'Média', high: 'Alta' };
 const dialog = document.querySelector('#task-dialog');
 const form = document.querySelector('#task-form');
 const feedback = document.querySelector('#feedback');
@@ -27,6 +28,9 @@ function buildCard(task) {
 
   const title = document.createElement('h3');
   title.textContent = task.title;
+  const priority = document.createElement('span');
+  priority.className = `priority priority-${task.priority}`;
+  priority.textContent = `Prioridade ${priorityLabels[task.priority]}`;
   const description = document.createElement('p');
   description.textContent = task.description || 'Sem descrição.';
 
@@ -55,7 +59,7 @@ function buildCard(task) {
   remove.textContent = 'Excluir';
   remove.addEventListener('click', () => deleteTask(task));
   actions.append(edit, remove);
-  card.append(title, description, select, actions);
+  card.append(priority, title, description, select, actions);
   return card;
 }
 
@@ -104,6 +108,7 @@ function openDialog(task) {
   document.querySelector('#title').value = task?.title ?? '';
   document.querySelector('#description').value = task?.description ?? '';
   document.querySelector('#status').value = task?.status ?? 'todo';
+  document.querySelector('#priority').value = task?.priority ?? 'medium';
   dialog.showModal();
   document.querySelector('#title').focus();
 }

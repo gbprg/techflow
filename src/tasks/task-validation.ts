@@ -1,7 +1,9 @@
 import {
   taskStatuses,
+  taskPriorities,
   type CreateTaskInput,
   type TaskStatus,
+  type TaskPriority,
   type UpdateTaskInput,
 } from './task.js';
 
@@ -9,6 +11,17 @@ export class ValidationError extends Error {}
 
 function isStatus(value: unknown): value is TaskStatus {
   return typeof value === 'string' && taskStatuses.includes(value as TaskStatus);
+}
+
+function readPriority(value: unknown): TaskPriority | undefined {
+  if (value === undefined) return undefined;
+  if (
+    typeof value !== 'string' ||
+    !taskPriorities.includes(value as TaskPriority)
+  ) {
+    throw new ValidationError('A prioridade informada é inválida.');
+  }
+  return value as TaskPriority;
 }
 
 function readTitle(value: unknown, required: boolean): string | undefined {
@@ -47,6 +60,7 @@ export function validateCreateTask(body: unknown): CreateTaskInput {
     title: readTitle(body.title, true)!,
     description: readDescription(body.description),
     status: readStatus(body.status),
+    priority: readPriority(body.priority),
   };
 }
 
@@ -56,6 +70,7 @@ export function validateUpdateTask(body: unknown): UpdateTaskInput {
     title: readTitle(body.title, false),
     description: readDescription(body.description),
     status: readStatus(body.status),
+    priority: readPriority(body.priority),
   };
   if (Object.values(input).every((value) => value === undefined)) {
     throw new ValidationError('Informe ao menos um campo para atualizar.');
