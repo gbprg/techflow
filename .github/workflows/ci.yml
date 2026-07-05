@@ -1,0 +1,36 @@
+name: Integração contínua
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Testes e qualidade
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Validar qualidade do código
+        run: npm run lint
+
+      - name: Executar testes automatizados
+        run: npm test
+
+      - name: Compilar TypeScript
+        run: npm run build
