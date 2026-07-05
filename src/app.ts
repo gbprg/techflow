@@ -35,5 +35,14 @@ export function createApp(database: SqliteDatabase) {
     response.json(task);
   });
 
+  app.delete('/api/tasks/:id', (request, response) => {
+    const deleted = tasks.delete(Number(request.params.id));
+    if (!deleted) {
+      response.status(404).json({ message: 'Tarefa não encontrada.' });
+      return;
+    }
+    response.status(204).send();
+  });
+
   return app;
 }
