@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
+    defaults:
+      run:
+        working-directory: techflow
+
     steps:
       - name: Obter código
         uses: actions/checkout@v4
@@ -22,6 +26,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: techflow/package-lock.json
 
       - name: Instalar dependências
         run: npm ci

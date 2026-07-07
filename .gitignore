@@ -1,9 +1,8 @@
-node_modules/
-dist/
-data/*.db
-data/*.db-shm
-data/*.db-wal
-coverage/
+techflow/node_modules/
+techflow/dist/
+techflow/data/*.db
+techflow/data/*.db-shm
+techflow/data/*.db-wal
+techflow/coverage/
 .DS_Store
 *.log
-
