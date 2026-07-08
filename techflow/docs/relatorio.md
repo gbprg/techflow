@@ -97,6 +97,8 @@ npm run build
 
 As evidências finais apresentam o quadro Kanban com pelo menos dez cards, o histórico com commits semânticos e o workflow de integração contínua aprovado. Cada imagem deve ser acompanhada de comentário que explique o que ela comprova, conforme o roteiro em `docs/evidencias.md`.
 
+O repositório publicado está disponível em <https://github.com/gbprg/techflow>. O histórico de commits pode ser consultado em <https://github.com/gbprg/techflow/commits/main/> e a execução aprovada da integração contínua está registrada em <https://github.com/gbprg/techflow/actions/runs/28907372256>.
+
 ## 10. Conclusão
 
 O TechFlow Tasks demonstra um ciclo de Engenharia de Software completo em escala acadêmica: escopo definido, modelagem, planejamento visual, implementação incremental, versionamento, testes, automação e gestão documentada de mudança. A solução atende o objetivo funcional e mantém evidências verificáveis de como foi construída.
