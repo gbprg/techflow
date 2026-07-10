@@ -22,6 +22,8 @@ Foi adotado o **Kanban**, alinhado ao formato contínuo de uma operação logís
 
 O GitHub Project representa o fluxo com `To Do`, `In Progress` e `Done`. Cada funcionalidade ou atividade de qualidade é registrada como card e movimentada conforme seu estado real. Os commits semânticos conectam o planejamento ao código produzido.
 
+Como referência de mercado, o projeto se aproxima do uso de quadros visuais em soluções como **Trello**, que organiza trabalho por colunas e cartões movidos conforme o andamento. A escolha do Kanban neste contexto acadêmico segue a mesma lógica: tornar o fluxo operacional explícito, reduzir perda de contexto e facilitar priorização rápida.
+
 O método é aplicado diretamente por meio de:
 
 - visualização das tarefas e de seus estados;
@@ -96,6 +98,24 @@ npm run build
 ## 9. Evidências do GitHub
 
 As evidências finais apresentam o quadro Kanban com pelo menos dez cards, o histórico com commits semânticos e o workflow de integração contínua aprovado. Cada imagem deve ser acompanhada de comentário que explique o que ela comprova, conforme o roteiro em `docs/evidencias.md`.
+
+### 9.1 Quadro Kanban
+
+![Quadro Kanban com as tarefas](images/kanban.png)
+
+O quadro comprova a aplicação prática do Kanban no projeto, com fluxo visível entre `To Do`, `In Progress` e `Done`, além do registro das atividades técnicas e documentais exigidas pela disciplina.
+
+### 9.2 Histórico de commits
+
+![Histórico de commits semânticos](images/commits.png)
+
+O histórico comprova evolução incremental e rastreável, com mensagens semânticas que distinguem implementação, testes, integração contínua e documentação.
+
+### 9.3 Integração contínua
+
+![Workflow de CI aprovado](images/ci.png)
+
+O workflow aprovado comprova que o repositório executa validações automáticas de lint, testes e build antes da entrega final.
 
 O repositório publicado está disponível em <https://github.com/gbprg/techflow>. O histórico de commits pode ser consultado em <https://github.com/gbprg/techflow/commits/main/> e a execução aprovada da integração contínua está registrada em <https://github.com/gbprg/techflow/actions/runs/28907372256>.
 
